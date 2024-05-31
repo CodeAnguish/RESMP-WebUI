@@ -1,0 +1,64 @@
+:root {
+    --body-background-color: linear-gradient(45deg, #9da2c6, transparent);
+    --next-background-color: white;
+    --next-box-shadow-color-1: rgba(50, 50, 93, 0.25);
+    --next-box-shadow-color-2: rgba(0, 0, 0, 0.3);
+    --csb-background-gradient-1: #8EC5FC;
+    --csb-background-gradient-2: #E0C3FC;
+    --csb-background-gradient-3: #8ED2C9;
+    --csb-header-color: #fff;
+    --csb-header-border-color: #ffffff29;
+    --csb-character-hover-background: #edecec3d;
+    --scrollbar-track-color: rgba(0, 0, 0, 0.1);
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.3);
+    --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.5);
+    --shadow-color: rgba(0, 0, 0, 0.1); 
+    --text-color: #34425b;
+    --text-description: #666;
+    --newCharacter-form-bg: #fff; /* Cor de fundo do formulário */
+    --newCharacter-header-color: #000; /* Cor do título do formulário */
+    --newCharacter-input-color: #656565; /* Cor do texto nos inputs */
+    --newCharacter-label-color: #000; /* Cor do texto nas labels */
+    --newCharacter-submit-bg: linear-gradient(135deg, rgb(142, 197, 252), rgb(224, 195, 252), rgb(142, 210, 201)); /* Cor de fundo do botão de envio */
+    --newCharacter-submit-color: black; /* Cor do texto no botão de envio */
+    --newCharacter-submit-hover-bg: #2c3e50; /* Cor de fundo ao passar o mouse sobre o botão de envio */
+    --chat-bg: linear-gradient(319deg, #35c0cd, #8fbaff, #cdc3fc);
+    --title-color: #495c7f;
+    --csb-photo-border: #635c6d83;
+    --chat-baloon-text: #495c7f;
+}
+
+/* Modo Escuro */
+:root .dark-mode {
+    --body-background-color: linear-gradient(45deg, rgb(31 40 86), black);
+    --next-background-color: #333;
+    --next-box-shadow-color-1: rgba(0, 0, 0, 0.7);
+    --next-box-shadow-color-2: rgba(0, 0, 0, 0.9);
+    --csb-background-gradient-1: #1e3c72;
+    --csb-background-gradient-2: #5e2a98;
+    --csb-background-gradient-3: #000000;
+    --csb-header-color: #ddd;
+    --csb-header-border-color: #fcfcfc33;   
+    --csb-character-hover-background: #6437b8;
+    --scrollbar-track-color: rgba(255, 255, 255, 0.1);
+    --scrollbar-thumb-color: rgba(255, 255, 255, 0.3);
+    --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.5);
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --text-color: #fff;
+    --text-description: #d1bcff;
+    --newCharacter-form-bg: none; /* Cor de fundo do formulário */
+    --newCharacter-header-color: white; /* Cor do título do formulário */
+    --newCharacter-input-color: white; /* Cor do texto nos inputs */
+    --newCharacter-label-color: white; /* Cor do texto nas labels */
+    --newCharacter-submit-bg: linear-gradient(135deg, rgb(142, 197, 252), rgb(224, 195, 252), rgb(142, 210, 201)); /* Cor de fundo do botão de envio */
+    --newCharacter-submit-color: black; /* Cor do texto no botão de envio */
+    --newCharacter-submit-hover-bg: #2c3e50; /* Cor de fundo ao passar o mouse sobre o botão de envio */
+    --chat-bg: linear-gradient(319deg, #041731, #28173b);
+    --title-color: white;
+    --csb-photo-border: #00000040;
+    --chat-baloon-text: #25134c;
+}
+
+body{
+    transition: ease all 1.5s;
+}

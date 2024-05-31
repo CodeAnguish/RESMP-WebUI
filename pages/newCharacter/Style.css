@@ -1,0 +1,134 @@
+ 
+/* Estilos do formulário de novo personagem */
+
+#newCharacterForm {
+    padding: 20px;
+    background-color: var(--newCharacter-form-bg);
+}
+
+#newCharacterForm h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--newCharacter-header-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    color: var(--newCharacter-label-color);
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    color: var(--newCharacter-input-color);
+    background-color: transparent;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+button.submit-button {
+    background: var(--newCharacter-submit-bg);
+    color: var(--newCharacter-submit-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.submit-button:hover {
+    background-color: var(--newCharacter-submit-hover-bg);
+}
+.newCharacterForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.ghostIcon {
+    background: linear-gradient(135deg, #8EC5FC, #E0C3FC, #8ED2C9);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input, .textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.input:focus, .textarea:focus {
+    border-color: #a3d2fc;
+    outline: none;
+    box-shadow: 0 0 5px rgba(163, 210, 252, 0.5);
+}
+
+.submitButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #8EC5FC;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submitButton:hover {
+    background: #7bb7f9;
+}
