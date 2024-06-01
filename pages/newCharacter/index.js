@@ -3,6 +3,7 @@ import { CgArrowLeft } from 'react-icons/cg';
 import { TbGhostFilled } from 'react-icons/tb';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { addNewCharacter } from "../../components/Chat/ChatAPIActions";
 
 export default function NewCharacter() {
     const [name, setName] = useState('');
@@ -12,20 +13,11 @@ export default function NewCharacter() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('/api/insertCharacter', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, description, systemPrompt, photo }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to create character');
-            }
-
+            // Chama a função addNewCharacter
+            addNewCharacter({ name, description, systemPrompt, photo });
             toast.success('Character created successfully');
         } catch (error) {
+            console.error('Failed to create character:', error);
             toast.error('Failed to create character');
         }
     };

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { CiCirclePlus } from 'react-icons/ci';
 import { FaSun } from 'react-icons/fa';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
-import { IoMdSettings } from 'react-icons/io';
 import { TbHexagonLetterN } from 'react-icons/tb';
 
 export default function CharactersSideBar(props) {
@@ -41,7 +40,7 @@ export default function CharactersSideBar(props) {
         return (
             <div className="csb-character" onClick={() => props.onSelect(character)}>
                 <div className="csb-character-photo">
-                    <img src={character.photo} alt={character.name} />
+                     <img src={character.photo ? character.photo : "/img/default.png"} alt={character.name} />
                 </div>
                 <div className="csb-character-details">
                     <h1>{character.name}</h1>
@@ -58,11 +57,6 @@ export default function CharactersSideBar(props) {
 
     return (
         <div id="charactersSideBar">
-            <Link href="/settings" style={{ color: themeColor }}>
-                <div className={`settings-button ${animate ? 'animate' : ''}`}>
-                    <IoMdSettings size={20} />
-                </div>
-            </Link>
             <div
                 className={`theme-selector ${animate ? 'animate' : ''}`}
                 onClick={toggleTheme}
@@ -76,11 +70,11 @@ export default function CharactersSideBar(props) {
                         <div className="hexagon">
                             <TbHexagonLetterN />
                         </div>
-                        <span className="kearm-text">kearm</span>
+                        <span className="kearm-text">RESMP</span>
                     </h1>
                 <div style={{ display: "flex", justifyContent: "center", alignItems:"center", flexDirection: "column", marginTop: "-30px"}}> 
                     <p style={{ opacity: 0.7}}>Running:</p>
-                    <p style={{ marginTop: "-10px"}}>{model}</p>
+                    <p style={{ marginTop: "-10px"}}>RESMP Model</p>
                 </div>
                 </Link>
             </div>
@@ -94,7 +88,11 @@ export default function CharactersSideBar(props) {
                     </Link>
                 </p>
             </div>
-            <div id="csb-content">{data.map((e, index) => <Character key={index} {...e} />)}</div>
+            <div id="csb-content">{data.length >= 1 ? data.map((e, index) => <Character key={index} {...e} />) : (
+                <Link href="/newCharacter" style={{ color: 'var(--text-color)', textAlign:'center'}}>
+                    <p>Oh, no character. Create one here.</p>
+                </Link>
+            )}</div>
             <style jsx>{`
                 .theme-selector {
                     background: ${themeGradient};
@@ -102,7 +100,7 @@ export default function CharactersSideBar(props) {
                     border-radius: 20px;
                     position: absolute;
                     top: 8px;
-                    right: 10px;
+                    left: 10px;
                     font-size: 15px;
                     opacity: 1;
                     cursor: pointer;
@@ -166,7 +164,7 @@ export default function CharactersSideBar(props) {
                     font-size: 40px;
                     position: absolute;
                     left: 100%;
-                    margin-left: -110px;
+                    margin-left: -75px;
                     transition: opacity 0.5s, transform 0.5s;
                     transform: translateX(-50px);
                 }
