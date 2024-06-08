@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+
+# Next.js
+/.next/
+/out/
+
+# IDE
+/.vscode/
+/.idea/
+
+# Cache and logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+*.log.*
+
+# Build's files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# .env 
+.env
