@@ -1,12 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FaTrashAlt, FaBroom } from 'react-icons/fa';   
+import { IoIosSend, IoIosArrowBack } from "react-icons/io";
 import ChatBaloon from '../ChatBaloon/ChatBaloon';
 import { updateCharacterHistory, removeCharacter } from "./ChatAPIActions";
+import { useRouter } from 'next/router';
 
 export default function Chat(props) {
     const [isAssistantResponding, setIsAssistantResponding] = useState(false);
     const [chatHistory, setChatHistory] = useState([]);
     const chatBodyRef = useRef(null);
     const inputRef = useRef(null);
+    const router = useRouter();
+    const [isMobile, setIsMobile] = useState(false);
+    const maxTextareaHeight = 100; // Define a altura máxima do textarea
 
     useEffect(() => {
         setChatHistory([...props.character.history]);
@@ -24,62 +30,70 @@ export default function Chat(props) {
         }
     }, [isAssistantResponding]);
 
-    const handleSendMessage = async (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            inputRef.current.style.height = '40px';
-            event.preventDefault();
-            const messageText = event.target.value.trim();
-            if (messageText !== '') {
-                const newMessage = { type: 'user', text: messageText };
-                setChatHistory(prevHistory => [...prevHistory, newMessage]);
-                event.target.value = '';
-                setIsAssistantResponding(true);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
 
-                props.character.history.push(newMessage);
-                await updateCharacterHistory(props.character);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
-                const messages = [
-                    {
-                        role: 'system',
-                        content: props.character.systemPrompt
-                    },
-                    ...props.character.history.map(msg => ({
-                        role: msg.type === 'user' ? 'user' : 'assistant',
-                        content: msg.text
-                    }))
-                ];
+    const sendMessage = async (text) => {
+        if (!text) return;
 
-                try {
-                    const response = await fetch('/api/assistant', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ messages })
-                    });
+        const newMessage = { type: 'user', text };
+        setChatHistory(prev => [...prev, newMessage]);
+        inputRef.current.value = '';
+        setIsAssistantResponding(true);
 
-                    if (!response.ok) {
-                        throw new Error('Failed to get response from the assistant');
-                    }
+        props.character.history.push(newMessage);
+        await updateCharacterHistory(props.character);
 
-                    const data = await response.json();
-                    const assistantMessage = { type: 'assistant', text: data.response };
+        const messages = [
+            { role: 'system', content: props.character.systemPrompt },
+            ...props.character.history.map(msg => ({
+                role: msg.type === 'user' ? 'user' : 'assistant',
+                content: msg.text
+            }))
+        ];
 
-                    setChatHistory(prevHistory => [...prevHistory, assistantMessage]);
+        try {
+            const response = await fetch('/api/assistant', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages })
+            });
 
-                    props.character.history.push(assistantMessage);
-                    await updateCharacterHistory(props.character);
-
-                } catch (error) {
-                    console.error('Error getting response from the assistant:', error);
-                    const errorMessage =  { type: 'assistant', text: 'Sorry, I am unable to respond at the moment.' };
-                    setChatHistory(prevHistory => [...prevHistory, errorMessage]);
-                    props.character.history.push(errorMessage);
-                    await updateCharacterHistory(props.character);
-                }
-
-                setIsAssistantResponding(false);
+            if (!response.ok) {
+                throw new Error('Failed to get response from the assistant');
             }
+
+            const data = await response.json();
+            const assistantMessage = { type: 'assistant', text: data.response };
+
+            setChatHistory(prev => [...prev, assistantMessage]);
+            props.character.history.push(assistantMessage);
+            await updateCharacterHistory(props.character);
+
+        } catch (error) {
+            console.error('Error getting response from the assistant:', error);
+            const errorMessage = { type: 'assistant', text: 'Sorry, I am unable to respond at the moment.' };
+            setChatHistory(prev => [...prev, errorMessage]);
+            props.character.history.push(errorMessage);
+            await updateCharacterHistory(props.character);
+        }
+
+        setIsAssistantResponding(false);
+    };
+
+    const handleSendMessage = (event) => {
+        if ((event.type === 'keypress' && event.key === 'Enter' && !event.shiftKey) || event.type === 'click') {
+            event.preventDefault();
+            sendMessage(inputRef.current.value.trim());
         }
     };
 
@@ -99,7 +113,11 @@ export default function Chat(props) {
         if (textarea) {
             const resizeTextarea = () => {
                 textarea.style.height = 'auto';
-                textarea.style.height = `${textarea.scrollHeight}px`;
+                if (textarea.scrollHeight <= maxTextareaHeight) {
+                    textarea.style.height = `${textarea.scrollHeight}px`;
+                } else {
+                    textarea.style.height = `${maxTextareaHeight}px`;
+                }
             };
 
             textarea.addEventListener('input', resizeTextarea);
@@ -109,20 +127,25 @@ export default function Chat(props) {
                 textarea.removeEventListener('input', resizeTextarea);
             };
         }
-    }, [inputRef]);
+    }, []);
 
     return (
         <div id="chat">
             <div id="chat-header">
+                {isMobile && (
+                    <IoIosArrowBack
+                        size={40}
+                        style={{ cursor: 'pointer', position: 'relative',   paddingLeft: '5px'}}
+                        onClick={() => router.back()}
+                    />
+                )}
                 <div className="csb-character-photo chat-profile">
-                     <img src={props.character?.photo ? props.character?.photo : "/img/default.png"} alt={props.character.name} />
+                    <img src={props.character?.photo || "/img/default.png"} alt={props.character.name} />
                 </div>
                 <div>
                     <p>Talking with</p>
                     <h1 style={{ color: 'var(--text-color)' }}>{props.character?.name ?? ':)'}</h1>
                 </div>
-                <button className="chat-character-delete" onClick={handleRemoveCharacter}>Delete character</button>
-                <button className="chat-history-clear" onClick={handleClearHistory}>Clear history</button>
             </div>
             <div id="chat-body" ref={chatBodyRef}>
                 {chatHistory.map((message, index) => (
@@ -136,7 +159,6 @@ export default function Chat(props) {
                         </p>
                     </div>
                 )}
-
                 {isAssistantResponding && <ChatBaloon type="assistant" noBg={true} text="Typing..." />}
             </div>
             <div id="chat-talk">
@@ -147,7 +169,19 @@ export default function Chat(props) {
                         disabled={isAssistantResponding}
                         ref={inputRef}
                         rows={1}
+                        style={{ overflowY: 'auto', maxHeight: `${maxTextareaHeight}px` }}
                     />
+                    <button id="chat-send" onClick={handleSendMessage}>
+                        <IoIosSend size={25} />
+                    </button>
+                </div>
+                <div id="chat-action-buttons">
+                    <button className="chat-character-delete" onClick={handleRemoveCharacter} title="Delete character">
+                        <FaTrashAlt size="15" />
+                    </button>
+                    <button className="chat-history-clear" onClick={handleClearHistory} title="Clear history">
+                        <FaBroom />
+                    </button>
                 </div>
             </div>
         </div>

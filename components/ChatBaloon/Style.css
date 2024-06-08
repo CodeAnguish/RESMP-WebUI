@@ -1,0 +1,23 @@
+.baloonStyle{
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    max-width: 240px;
+    word-wrap: break-word;
+}
+.userBaloon{
+    background: var(--baloon-bg-user);
+    color: var(--baloon-bg-user-text);
+}
+.assistantBaloon{
+    background: var(--baloon-bg-assistant);
+    color: var(--baloon-bg-assistant-text);
+}
+.noBg{
+    background: none !important;
+    color: none !important;
+}
+.baloonContainer{
+    display: flex;
+}

@@ -41,8 +41,6 @@
             const token = process.env.TOKEN;
             const model = process.env.SERVER_MODEL;
 
-            alert(serverAPI);
-
             const response = await fetch(serverAPI, {
                 method: 'POST',
                 headers: {
@@ -78,3 +76,5 @@
             console.error('Error removing character:', error);
         }
     };
+
+    export const getModelName = () => process.env.SERVER_MODEL;
