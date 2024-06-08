@@ -1,0 +1,64 @@
+:root {
+    --body-background-color: linear-gradient(45deg, #a5aac9, transparent); 
+    --next-background-color: #f5f5f5; 
+    --next-box-shadow-color-1: rgba(50, 50, 93, 0.2); 
+    --next-box-shadow-color-2: rgba(0, 0, 0, 0.2); 
+    --csb-background-gradient-1: #76b1fd; 
+    --csb-background-gradient-2: #efb9fd; 
+    --csb-background-gradient-3: #77d8c4; 
+    --csb-header-color: #fff; 
+    --csb-header-border-color: #ffffff33; 
+    --csb-character-hover-background: #f2f2f24d; 
+    --scrollbar-track-color: rgba(0, 0, 0, 0.05); 
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.2); 
+    --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3); 
+    --shadow-color: rgba(0, 0, 0, 0.05); 
+    --text-color: #3a475e; 
+    --text-description: #7a7a7a; 
+    --newCharacter-form-bg: #f9f9f9; 
+    --newCharacter-header-color: #333; 
+    --newCharacter-input-color: #333; 
+    --newCharacter-label-color: #333; 
+    --newCharacter-submit-bg: linear-gradient(135deg, #8ed2c9, #e0c3fc, #8ec5fc); 
+    --newCharacter-submit-color: #fff; 
+    --newCharacter-submit-hover-bg: #34495e; 
+    --chat-bg: linear-gradient(319deg, #35c0cd, #8fbaff, #cdc3fc); 
+    --title-color: #4d6083; 
+    --csb-photo-border: #635c6d80; 
+    --chat-baloon-text: #4d6083; 
+    --baloon-bg-assistant: linear-gradient(134deg, #6c6fc8, #0087cb99); 
+    --baloon-bg-assistant-text: #fff; 
+    --baloon-bg-user: linear-gradient(45deg, #8ed2c9, #e0c3fc); 
+    --baloon-bg-user-text: #23405f; 
+}
+
+
+:root .dark-mode {
+    --body-background-color: linear-gradient(45deg, #1f2b4e, #000); 
+    --next-background-color: #222; 
+    --next-box-shadow-color-1: rgba(0, 0, 0, 0.5); 
+    --next-box-shadow-color-2: rgba(0, 0, 0, 0.7); 
+    --csb-background-gradient-1: #1d3a7b; 
+    --csb-background-gradient-2: #4e1d6d; 
+    --csb-background-gradient-3: #000; 
+    --csb-header-color: #ccc; 
+    --csb-header-border-color: #fff; 
+    --csb-character-hover-background: #4d28a6; 
+    --scrollbar-track-color: rgba(255, 255, 255, 0.05); 
+    --scrollbar-thumb-color: rgba(255, 255, 255, 0.2); 
+    --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.3); 
+    --shadow-color: rgba(255, 255, 255, 0.05); 
+    --text-color: #eee; 
+    --text-description: #b8b8b8; 
+    --newCharacter-form-bg: #333; 
+    --newCharacter-header-color: #fff; 
+    --newCharacter-input-color: #fff; 
+    --newCharacter-label-color: #fff; 
+    --newCharacter-submit-bg: linear-gradient(135deg, #8ed2c9, #e0c3fc, #8ec5fc); 
+    --newCharacter-submit-color: #fff; 
+    --newCharacter-submit-hover-bg: #34495e; 
+    --chat-bg: linear-gradient(319deg, #041731, #28173b); 
+    --title-color: #eee; 
+    --csb-photo-border: #00000050; 
+    --chat-baloon-text: #2b1553; 
+}
