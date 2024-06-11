@@ -48,6 +48,7 @@ export default function Chat(props) {
         const newMessage = { type: 'user', text };
         setChatHistory(prev => [...prev, newMessage]);
         inputRef.current.value = '';
+        inputRef.current.style.height = 'auto'; // Reset the height
         setIsAssistantResponding(true);
 
         props.character.history.push(newMessage);
