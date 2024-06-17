@@ -1,9 +1,12 @@
+:root{
+    --baloonMaxWidth: 270px;
+}
 .baloonStyle{
     margin: 10px;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 15px;
-    max-width: 240px;
+    max-width: var(--baloonMaxWidth);
     word-wrap: break-word;
 }
 .userBaloon{
@@ -20,4 +23,11 @@
 }
 .baloonContainer{
     display: flex;
+}
+code{
+    max-width: var(--baloonMaxWidth);
+    overflow: scroll;
+    display: block;
+    background: rgba(0, 0, 0, 0.332);
+    padding: 10px;
 }

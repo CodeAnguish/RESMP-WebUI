@@ -76,8 +76,14 @@ body {
     opacity: 1;
 }
 
+:root{
+    --baloonMaxWidth: 340px;
+}
 
 @media (max-width: 768px) {
+    :root{
+        --baloonMaxWidth: 100%;
+    }
     body {
         padding: 0;
         margin: 0;
