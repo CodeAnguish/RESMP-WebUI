@@ -6,12 +6,12 @@ import { BsFillMoonStarsFill } from 'react-icons/bs';
 import Logo from '../../public/teste.svg';
 
 export default function CharactersSideBar(props) {
-
     const [theme, setTheme] = useState('light');
     const [themeIcon, setThemeIcon] = useState(
         theme === 'light' ? <BsFillMoonStarsFill /> : <FaSun />
     );
     const [animate, setAnimate] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const data = props.data;
     const model = "Dolphin8X22B";
 
@@ -35,6 +35,10 @@ export default function CharactersSideBar(props) {
         }, 1000);
     };
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
     const Character = (character) => {
         return (
             <div className="csb-character" onClick={() => props.onSelect(character)}>
@@ -51,13 +55,14 @@ export default function CharactersSideBar(props) {
 
     return (
         <div id="charactersSideBar" style={{ transform: props.visible ? 'translateX(0)' : 'translateX(-999px)' }}>
+
+            <div id="csb-header">
             <div
                 className={`theme-selector ${animate ? 'animate' : ''}`}
                 onClick={toggleTheme}
             >
                 {themeIcon}
             </div>
-            <div id="csb-header">
                 <div id="csb-title" className="csb-title">
                     <Link href="/">
                         <div className="logo-container">
@@ -70,21 +75,28 @@ export default function CharactersSideBar(props) {
                         </div>
                     </div>
                 </div>
-            </div>
-            <Link href="/newCharacter" id="csb-new-character">
-  
+                <input type="text" placeholder='Search' className="csb-character-search" onChange={handleSearch} />
+                <Link href="/newCharacter" id="csb-new-character">
                     <span>
                         <CiCirclePlus size={30} />
                     </span>
                     <p>Create a <b>new character</b></p>
-                
-            </Link>
+                </Link>
+            </div>
+
             <div id="csb-content">
-                {data.length >= 1 ? data.map((e, index) => <Character key={index} {...e} />) : (
-                    <Link href="/newCharacter" style={{ color: 'var(--text-color)', textAlign: 'center' }}>
-                        <p>Oh, no character. Create one here.</p>
-                    </Link>
-                )}
+                {data.filter(character =>
+                    character.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ).length >= 1 ? data
+                    .filter(character =>
+                        character.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map((e, index) => <Character key={index} {...e} />)
+                    : (
+                        <Link href="/newCharacter" style={{ color: 'var(--text-color)', textAlign: 'center' }}>
+                            <p>Oh, no character found.<br/>Create one here.</p>
+                        </Link>
+                    )}
             </div>
         </div>
     );
