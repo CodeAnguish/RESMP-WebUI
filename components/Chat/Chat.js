@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaTrashAlt, FaBroom } from 'react-icons/fa';   
-import { IoIosSend, IoIosArrowBack } from "react-icons/io";
+import { FaTrashAlt, FaBroom } from 'react-icons/fa';
+import { IoIosSend, IoIosArrowBack, IoIosCreate } from 'react-icons/io';
 import ChatBaloon from '../ChatBaloon/ChatBaloon';
-import { updateCharacterHistory, removeCharacter } from "./ChatAPIActions";
+import { updateCharacterHistory, removeCharacter } from './ChatAPIActions';
 import { useRouter } from 'next/router';
 
 export default function Chat(props) {
@@ -109,6 +109,10 @@ export default function Chat(props) {
         await props.onRemoveCharacter(props.character.id);
     };
 
+    const handleEditCharacter = () => {
+        router.push(`/editCharacter/${props.character.id}`);
+    };
+
     useEffect(() => {
         const textarea = inputRef.current;
         if (textarea) {
@@ -136,7 +140,7 @@ export default function Chat(props) {
                 {isMobile && (
                     <IoIosArrowBack
                         size={40}
-                        style={{ cursor: 'pointer', position: 'relative',   paddingLeft: '5px'}}
+                        style={{ cursor: 'pointer', position: 'relative', paddingLeft: '5px' }}
                         onClick={() => router.back()}
                     />
                 )}
@@ -155,7 +159,7 @@ export default function Chat(props) {
                 {chatHistory.length === 0 && (
                     <div style={{ textAlign: 'center', marginTop: '100px' }}>
                         <h1>😊</h1>
-                        <p style={{ color: "var(--text-color)", opacity: 0.5}}>
+                        <p style={{ color: "var(--text-color)", opacity: 0.5 }}>
                             Talk with {props.character.name}!
                         </p>
                     </div>
@@ -182,6 +186,9 @@ export default function Chat(props) {
                     </button>
                     <button className="chat-history-clear" onClick={handleClearHistory} title="Clear history">
                         <FaBroom />
+                    </button>
+                    <button className="chat-history-clear" onClick={handleEditCharacter} title="Edit character">
+                        <IoIosCreate size="15" />
                     </button>
                 </div>
             </div>
