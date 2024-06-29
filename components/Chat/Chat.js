@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaTrashAlt, FaBroom } from 'react-icons/fa';
 import { IoIosSend, IoIosArrowBack, IoIosCreate } from 'react-icons/io';
 import ChatBaloon from '../ChatBaloon/ChatBaloon';
-import { updateCharacterHistory, removeCharacter } from './ChatAPIActions';
+import { updateCharacterHistory, removeCharacter } from './CharacterActions';
 import { useRouter } from 'next/router';
 
 export default function Chat(props) {
@@ -74,7 +74,7 @@ export default function Chat(props) {
             }
 
             const data = await response.json();
-            const assistantMessage = { type: 'assistant', text: data.response };
+            const assistantMessage = { type: 'assistant', text: data.message };
 
             setChatHistory(prev => [...prev, assistantMessage]);
             props.character.history.push(assistantMessage);

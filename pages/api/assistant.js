@@ -3,6 +3,7 @@ export default async function handler(req, res) {
         const serverAPI = process.env.SERVER_API;
         const token     = process.env.TOKEN;
         const model     = process.env.SERVER_MODEL;
+        const APIType   = process.env.API_TYPE; 
 
         const response = await fetch(serverAPI, {
             method: 'POST',
@@ -11,7 +12,7 @@ export default async function handler(req, res) {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                model: model,
+                model: "gemma2:latest",
                 messages: req.body.messages,
                 stream: false
             }),
@@ -21,9 +22,20 @@ export default async function handler(req, res) {
             console.log(response);
             throw new Error(response);
         }
-   
+
         const data = await response.json();
-        res.status(200).json({ response: data.choices[0].message?.content });
+
+        let responseMessage = "";
+
+        switch(APIType) { 
+            case "ollama":
+                responseMessage = data.message?.content;
+                break;  
+            default:
+                responseMessage = data.choices?.[0]?.message?.content;
+                break; 
+        }
+        res.status(200).json({ message: responseMessage });
 
     } catch (e) {
         console.error('Error getting response from the assistant:', e);
