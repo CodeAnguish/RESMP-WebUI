@@ -1,6 +1,6 @@
 # RESMP-WebUI
 
-![alt text](https://raw.githubusercontent.com/CodeAnguish/RESMP-WebUI/standAloneVersion/screenshots/screenshot-dark.png)
+![alt text]([https://raw.githubusercontent.com/CodeAnguish/RESMP-WebUI/standAloneVersion/screenshots/screenshot-dark.png](https://raw.githubusercontent.com/CodeAnguish/RESMP-WebUI/main/screenshots/screenshot-dark.png))
 
 Welcome to the *RESMP-WebUI* repository!
 
