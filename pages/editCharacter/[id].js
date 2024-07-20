@@ -4,6 +4,11 @@ import { CgArrowLeft } from 'react-icons/cg';
 import { TbGhostFilled } from 'react-icons/tb';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import Content from '@/components/Layout/Content/Content';
+import Header from '@/components/Layout/Header/Header';
+import Body from '@/components/Layout/Body/Body';
+import BackButton from '@/components/Layout/BackButton/BackButton';
+import Bottom from '@/components/Layout/Bottom/Bottom';
 
 export default function EditCharacter() {
     const [name, setName] = useState('');
@@ -61,13 +66,16 @@ export default function EditCharacter() {
     };
 
     return (
-        <div id="editCharacterForm">
-            <Link href="/" className="back-link">
-                <CgArrowLeft size="30" /> Back
-            </Link>
-            <TbGhostFilled size="40" color="white" style={{ background: 'linear-gradient(135deg, #8EC5FC, #E0C3FC, #8ED2C9)', borderRadius: '50%', padding: '10px' }} />
-            <h1>Edit Character</h1>
-            <div className="form-group">
+            <Content>
+                <Header
+                    title="Edit"
+                    subTitle="Edit character"
+                >
+                    <BackButton />
+                </Header>
+                <Body>
+ 
+                <div className="form-group">
                 <label htmlFor="name">Name:</label>
                 <br />
                 <input 
@@ -77,7 +85,7 @@ export default function EditCharacter() {
                     placeholder="Enter the character's name" 
                     value={name} 
                     onChange={(e) => setName(e.target.value)} 
-                    style={{ background: 'none', border: 'none', borderBottom: 'none'}}
+                   
                 />
             </div>
             <div className="form-group">
@@ -111,10 +119,15 @@ export default function EditCharacter() {
                     placeholder="Enter the character's photo URL" 
                     value={photo} 
                     onChange={(e) => setPhoto(e.target.value)} 
-                    style={{ background: 'none', border: 'none', borderBottom: 'none'}}
+                    
                 />
             </div>
-            <button className="submit-button" onClick={handleSubmit}>Update character</button>
-        </div>
+      
+      
+                </Body>
+                <Bottom>
+                <button className="submit-button" onClick={handleSubmit}>Update character</button>
+                </Bottom>
+            </Content>
     );
 }

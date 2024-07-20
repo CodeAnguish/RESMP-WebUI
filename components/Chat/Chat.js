@@ -63,10 +63,12 @@ export default function Chat(props) {
         ];
 
         try {
+            const getModel = await localStorage.getItem('server_model');
+            const model    = getModel !== null && getModel !== "" ? getModel : "gemma2:latest";
             const response = await fetch('/api/assistant', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages })
+                body: JSON.stringify({ messages, model })
             });
 
             if (!response.ok) {

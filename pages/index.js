@@ -159,7 +159,7 @@ const defaultCharacters = [
     }
 
     return (
-        <div id="content">
+        <div id="mainContent">
             <div id="mobile-menu-button" onClick={toggleSidebar}>
                 {
                     !sidebarVisible ? <CiMenuBurger size={40} /> : <IoMdClose size={40} />

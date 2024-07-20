@@ -2,7 +2,6 @@ export default async function handler(req, res) {
     try {
         const serverAPI = process.env.SERVER_API;
         const token     = process.env.TOKEN;
-        const model     = process.env.SERVER_MODEL;
         const APIType   = process.env.API_TYPE; 
 
         const response = await fetch(serverAPI, {
@@ -12,7 +11,7 @@ export default async function handler(req, res) {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                model: "gemma2:latest",
+                model: req.body.model,
                 messages: req.body.messages,
                 stream: false
             }),

@@ -1,0 +1,13 @@
+button.submit-button {
+    background: var(--newCharacter-submit-bg);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.submit-button:hover {
+    background-color: var(--newCharacter-submit-hover-bg);
+}

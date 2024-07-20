@@ -3,6 +3,11 @@ import { CgArrowLeft } from 'react-icons/cg';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { addNewCharacter } from "../../components/Chat/CharacterActions";
+import Body from '@/components/Layout/Body/Body';
+import Content from '@/components/Layout/Content/Content';
+import BackButton from '@/components/Layout/BackButton/BackButton';
+import Header from '@/components/Layout/Header/Header';
+import Bottom from '@/components/Layout/Bottom/Bottom';
 
 export default function NewCharacter() {
     const [name, setName] = useState('');
@@ -56,10 +61,12 @@ export default function NewCharacter() {
     };
 
     return (
-        <div id="newCharacterForm">
-            <Link href="/" className="back-link">
-                <CgArrowLeft size="30" /> Back
-            </Link>
+        <Content>
+
+            <Header title="Create" subTitle="Create a new character">
+              <BackButton />
+            </Header>
+            <Body>
             <div className="photo-preview">
                 {photo ? (
                     <img src={photo} alt="Character" className="photo-preview-img" />
@@ -131,67 +138,12 @@ export default function NewCharacter() {
                     />
                 </label>
             </div>
+
+ 
+            </Body>
+            <Bottom>
             <button className="submit-button" onClick={handleSubmit}>Create character</button>
-            <style jsx>{`
-                .photo-preview {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin-bottom: 20px;
-                }
-
-                .photo-preview-img {
-                    border-radius: 50%;
-                    width: 100px;
-                    height: 100px;
-                    object-fit: cover;
-                }
-
-                .photo-placeholder {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    background-color: var(--background-color);
-                    border: 2px dashed var(--border-color);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: var(--text-color);
-                }
-
-                .photo-upload {
-                    border: 2px dashed var(--border-color);
-                    padding: 20px;
-                    border-radius: 8px;
-                    text-align: center;
-                    cursor: pointer;
-                    background-color: var(--background-color);
-                }
-
-                .upload-content {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .upload-content p {
-                    margin: 0;
-                    color: var(--text-color);
-                }
-
-                .file-input {
-                    display: none;
-                }
-
-                .upload-label {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100%;
-                }
-            `}</style>
-        </div>
+            </Bottom>
+        </Content>
     );
 }

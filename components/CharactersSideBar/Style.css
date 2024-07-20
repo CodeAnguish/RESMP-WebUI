@@ -174,7 +174,22 @@
 .theme-selector.animate {
     animation: pulse 1s;
 }
-
+.config-selector {
+    background: var(--theme-selector-bg);
+    color: var(--theme-selector-text);
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 38px;
+    left: 10px;
+    font-size: 15px;
+    opacity: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s, color 0.3s;
+}
 .theme-selector {
     background: var(--theme-selector-bg);
     color: var(--theme-selector-text);

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CiCirclePlus } from 'react-icons/ci';
 import { FaSun } from 'react-icons/fa';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
+import { GrConfigure } from "react-icons/gr";
 import Logo from '../../public/teste.svg';
 
 export default function CharactersSideBar(props) {
@@ -39,6 +40,8 @@ export default function CharactersSideBar(props) {
         setSearchTerm(event.target.value);
     };
 
+ 
+
     const Character = (character) => {
         return (
             <div className="csb-character" onClick={() => props.onSelect(character)}>
@@ -63,6 +66,9 @@ export default function CharactersSideBar(props) {
             >
                 {themeIcon}
             </div>
+            <Link href="/config" className={`config-selector ${animate ? 'animate' : ''}`}>
+                <GrConfigure />
+            </Link>
                 <div id="csb-title" className="csb-title">
                     <Link href="/">
                         <div className="logo-container">
@@ -71,11 +77,11 @@ export default function CharactersSideBar(props) {
                     </Link>
                     <div className="title-details">
                         <div className="model-name">
-                            <p>{model}</p>
+                            <p>RESMP WebUI</p>
                         </div>
                     </div>
                 </div>
-                <input type="text" placeholder='Search' className="csb-character-search" onChange={handleSearch} />
+                <input type="text" placeholder='Search Character' className="csb-character-search" onChange={handleSearch} />
                 <Link href="/newCharacter" id="csb-new-character">
                     <span>
                         <CiCirclePlus size={30} />

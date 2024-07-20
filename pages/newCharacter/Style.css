@@ -43,19 +43,6 @@ textarea {
     text-decoration: underline;
 }
 
-button.submit-button {
-    background: var(--newCharacter-submit-bg);
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button.submit-button:hover {
-    background-color: var(--newCharacter-submit-hover-bg);
-}
 .newCharacterForm {
     max-width: 600px;
     margin: 0 auto;
@@ -131,4 +118,62 @@ button.submit-button:hover {
 
 .submitButton:hover {
     background: #7bb7f9;
+}
+.photo-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.photo-preview-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.photo-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    border: 2px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+}
+
+.photo-upload {
+    border: 2px dashed var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--background-color);
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-content p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
