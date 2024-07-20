@@ -1,6 +1,6 @@
 # RESMP-WebUI
 
-![alt text]([https://raw.githubusercontent.com/CodeAnguish/RESMP-WebUI/main/screenshots/screenshot-dark.png](https://raw.githubusercontent.com/CodeAnguish/RESMP-WebUI/main/screenshots/screenshot-dark.png))
+![Alt RESMPScreenshotDarkMode](https://raw.githubusercontent.com/CodeAnguish/RESMP-WebUI/main/screenshots/screenshot-light.png)
 
 Welcome to the *RESMP-WebUI* repository!
 
